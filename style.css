@@ -1,0 +1,490 @@
+/* Default (Mode Terang) */
+body {
+    background-color: #f3f3f3;
+    color: #333;
+  }
+  
+  /* Mode Gelap */
+  body.dark-mode {
+    background-color: #333;
+    color: #f3f3f3;
+  }
+  
+  /* Styling untuk tombol */
+  #darkModeToggle {
+    background-color: rgb(0, 0, 0);
+    border: 1px solid #ccc;
+    padding: 5px; /* Kurangi padding agar tombol lebih kecil */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Ikon tetap di tengah */
+    border-radius: 50%; /* Buat tombol berbentuk bulat */
+    width: 40px; /* Atur lebar tombol */
+    height: 40px; /* Atur tinggi tombol */
+    transition: all 0.3s ease;
+  }
+  
+  /* Styling untuk ikon */
+  #darkModeToggle img {
+    width: 20px; /* Ukuran ikon */
+    height: 20px;
+  }
+  
+  /* Styling untuk tombol saat aktif */
+  body.dark-mode #darkModeToggle {
+    background-color: #333;
+    color: rgb(0, 0, 0);
+    border-color: rgb(250, 250, 250);
+  }
+  
+  body.dark-mode #darkModeToggle img {
+    filter: invert(1); /* Membalikkan warna ikon saat mode gelap */
+  }
+  
+  /* Responsif untuk HP */
+  @media (max-width: 768px) {
+    #darkModeToggle {
+      width: 36px; /* Lebar tombol lebih kecil di HP */
+      height: 36px;
+      padding: 4px;
+    }
+  
+    #darkModeToggle img {
+      width: 18px; /* Ukuran ikon lebih kecil */
+      height: 18px;
+    }
+  }
+  
+  
+  /* Reset dasar untuk styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Container utama */
+  .container {
+    max-width: 1200px; /* Lebar maksimal untuk kontainer */
+    margin: 20px auto; /* Menjaga kontainer tetap di tengah */
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+  }
+  
+  /* Judul Aplikasi Tabungan */
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: #333;
+  }
+  
+  /* Style untuk form group */
+  .form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  /* Label styling */
+  .form-group label {
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  /* Styling untuk input, select dan date */
+  .form-group input[type="text"],
+  .form-group input[type="date"],
+  .form-group input[type="time"],
+  .form-group select {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 500px; /* Lebar maksimal untuk input */
+    margin-bottom: 15px;
+  }
+  
+  /* Styling untuk input file */
+  .form-group input[type="file"] {
+    margin-top: 10px;
+    font-size: 1rem;
+  }
+  
+  /* Gaya untuk gambar preview */
+  #previewBukti {
+    display: none;
+    max-width: 100px;
+    margin-top: 10px;
+  }
+  
+  /* Tombol Tambah Tabungan */
+  button {
+    padding: 12px 20px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    max-width: 200px; /* Batas lebar tombol */
+    margin-top: 20px;
+    align-self: center;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Responsif untuk layar kecil (ponsel) */
+  @media (max-width: 768px) {
+    /* Menyesuaikan ukuran form group di perangkat kecil */
+    .form-group {
+      width: 100%;
+    }
+  
+    /* Mengurangi ukuran font dan padding untuk input */
+    .form-group label {
+      font-size: 0.9rem;
+    }
+  
+    .form-group input[type="text"],
+    .form-group input[type="date"],
+    .form-group input[type="time"],
+    .form-group select {
+      font-size: 0.9rem;
+      padding: 10px;
+    }
+  
+    /* Menyesuaikan ukuran tombol untuk ponsel */
+    button {
+      padding: 10px 18px;
+      font-size: 0.9rem;
+    }
+  
+    /* Menyesuaikan gambar preview */
+    #previewBukti {
+      max-width: 80px;
+    }
+  }
+  
+  /* Responsif untuk layar lebih besar (tablet, laptop) */
+  @media (min-width: 769px) {
+    .container {
+      width: 80%; /* Kontainer lebih lebar untuk perangkat besar */
+    }
+  
+    .form-group {
+      width: 80%; /* Lebar form group lebih besar di laptop */
+      margin: 0 auto; /* Menjaga form tetap di tengah */
+    }
+  
+    button {
+      width: auto; /* Tombol akan berukuran sesuai kontennya */
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  
+  
+/* Container untuk daftar tabungan */
+#tabunganList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Styling untuk setiap item tabungan */
+  .tabungan-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%;
+    max-width: 350px;
+    box-sizing: border-box;
+    transition: transform 0.3s ease;
+    margin: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Tambahkan sedikit bayangan untuk efek */
+  }
+  
+  /* Hover effect untuk item tabungan */
+  .tabungan-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Bayangan lebih besar saat hover */
+  }
+  
+  /* Styling untuk judul tabungan */
+  .tabungan-item h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  /* Styling untuk teks tabungan (target, terkumpul, progress, dll.) */
+  .tabungan-item p {
+    font-size: 1rem;
+    margin: 5px 0;
+    color: #555;
+  }
+  
+  /* Styling untuk tombol ambil tabungan dan hapus */
+  .tabungan-item button {
+    background-color: #4caf50;
+    color: white;
+    padding: 5px 10px; /* Ukuran tombol lebih kecil */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 0.875rem; /* Ukuran font tombol lebih kecil */
+    transition: background-color 0.3s;
+    width: auto; /* Tombol tidak memenuhi lebar penuh */
+    display: inline-block; /* Tombol tampil inline */
+  }
+  
+  /* Hover effect untuk tombol */
+  .tabungan-item button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Styling untuk input jumlah yang ingin diambil */
+  .tabungan-item input[type="number"],
+  .tabungan-item input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box; /* Menjamin input tidak melebihi container */
+  }
+  
+  /* Menambahkan garis bawah pada input */
+  .tabungan-item input[type="number"]:focus,
+  .tabungan-item input[type="text"]:focus {
+    border: 1px solid #4caf50; /* Warna border saat fokus */
+    outline: none;
+  }
+  
+  /* Keterangan kecil untuk input jumlah dan keterangan */
+  .tabungan-item input[type="number"]::placeholder,
+  .tabungan-item input[type="text"]::placeholder {
+    font-size: 0.875rem; /* Ukuran font placeholder lebih kecil */
+  }
+  
+  /* Responsif untuk perangkat kecil (mobile) */
+  @media (max-width: 768px) {
+    #tabunganList {
+      padding: 10px; /* Padding lebih kecil pada perangkat kecil */
+    }
+  
+    .tabungan-item {
+      width: 100%; /* Item tabungan mengambil 100% lebar pada perangkat kecil */
+      max-width: 100%; /* Menghilangkan pembatasan lebar maksimum */
+    }
+  
+    /* Mengubah ukuran font dan memberi margin lebih kecil pada input dan tombol */
+    .tabungan-item input[type="number"],
+    .tabungan-item input[type="text"] {
+      font-size: 0.875rem; /* Ukuran font lebih kecil */
+      margin-top: 8px; /* Jarak lebih kecil */
+    }
+  
+    .tabungan-item button {
+      font-size: 0.875rem; /* Ukuran font tombol lebih kecil */
+      padding: 5px 10px; /* Padding tombol lebih kecil */
+    }
+  }
+  
+  
+  
+  
+  .actions button {
+    margin-right: 10px;
+    padding: 8px 15px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .actions button:hover {
+    background-color: #218838;
+  }
+  
+  .actions button.remove {
+    background-color: #dc3545;
+  }
+  
+  .actions button.remove:hover {
+    background-color: #c82333;
+  }
+  
+  /* Modal Styles */
+  /* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background-color: #fff;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    width: 300px;
+    border-radius: 12px;
+    text-align: center;
+  }
+  
+  .close {
+    color: #aaa;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+  }
+  
+  button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 10px;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  
+  /* Responsiveness */
+  @media (max-width: 768px) {
+    .container {
+      padding: 15px;
+      margin: 10px;
+    }
+  
+    .form-group input,
+    .form-group select,
+    .form-group button {
+      padding: 10px;
+      font-size: 14px;
+    }
+  
+    .tabungan-item {
+      padding: 10px;
+    }
+  
+    .tabungan-item h3 {
+      font-size: 16px;
+    }
+  
+    .actions button {
+      padding: 8px 12px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .container {
+      margin: 5px;
+    }
+  
+    .form-group input,
+    .form-group select,
+    .form-group button {
+      padding: 8px;
+      font-size: 12px;
+    }
+  
+    .tabungan-item {
+      padding: 8px;
+    }
+  
+    .tabungan-item h3 {
+      font-size: 14px;
+    }
+  
+    .actions button {
+      padding: 6px 10px;
+    }
+  }
+  /* Menyusun gambar bukti agar terpusat */
+.tabungan-item img {
+    display: block;
+    margin: 20px auto; /* Memusatkan gambar secara horizontal */
+    max-width: 100%; /* Menyesuaikan gambar dengan lebar kontainer */
+    height: auto; /* Menjaga proporsi gambar */
+  }
+  
+  /* Responsif untuk perangkat kecil */
+  @media (max-width: 600px) {
+    .tabungan-item img {
+      max-width: 80%; /* Mengurangi ukuran gambar pada layar kecil */
+    }
+  }
+  /* Style for the notification */
+.notification {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4CAF50; /* Green background */
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    max-width: 90%; /* Ensure it doesn't overflow on smaller screens */
+    word-wrap: break-word; /* Make sure long messages wrap properly */
+    text-align: center;
+  }
+  
+  /* Responsiveness for notifications */
+  @media (max-width: 768px) {
+    .notification {
+      max-width: 95%; /* On smaller screens, make the notification a bit smaller */
+      font-size: 14px; /* Adjust font size for better readability */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .notification {
+      max-width: 100%; /* Ensure notification fits on very small screens */
+      font-size: 12px; /* Make font size even smaller on very small devices */
+    }
+  }
+  
