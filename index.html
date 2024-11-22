@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <title>Aplikasi Tabungan</title>
+  <link rel="icon" type="img/icon tabungan.png" href="img/icon tabungan.png">
+  <button id="darkModeToggle" aria-label="Mode Gelap">
+    <i id="modeIcon" class="fas fa-sun"></i>
+  </button>
+  
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Aplikasi Tabungan</h2>
+    <div class="form-group">
+        <label for="name">Nama Tabungan:</label>
+        <input type="text" id="name" placeholder="Masukkan nama tabungan">
+      </div>
+      
+      <div class="form-group">
+        <label for="target">Target Tabungan:</label>
+        <input type="text" id="target" placeholder="Masukkan target tabungan">
+      </div>
+      
+      <div class="form-group">
+        <label for="amount">Jumlah Tabungan Awal:</label>
+        <input type="text" id="amount" placeholder="Masukkan jumlah tabungan awal">
+      </div>
+      <!-- Form Tambah Tabungan -->
+      <div class="form-group">
+        <label for="bukti">Upload Bukti Tabungan:</label>
+        <input type="file" id="bukti" accept="image/*" onchange="previewBukti(event)">
+        <img id="previewBukti" style="display: none; max-width: 100px; margin-top: 10px;" />
+    </div>
+    
+  
+
+      <div class="form-group">
+        <label for="type">Tipe Tabungan:</label>
+        <select id="type">
+          <option value="harian">Harian</option>
+          <option value="mingguan">Mingguan</option>
+          <option value="bulanan">Bulanan</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="date">Tanggal Mulai:</label>
+        <input type="date" id="date">
+      </div>
+      
+      <div class="form-group">
+        <label for="time">Waktu Mulai:</label>
+        <input type="time" id="time">
+      </div>
+      
+      <div class="form-group">
+        <label for="description">Keterangan:</label>
+        <input type="text" id="description" placeholder="Masukkan keterangan tambahan untuk tabungan ini">
+      </div>
+      
+      <!-- Tombol untuk menambahkan tabungan -->
+      <button onclick="addTabungan()">Tambah Tabungan</button>
+      
+      <!-- Daftar tabungan yang sudah ditambahkan -->
+      <div class="tabungan-list" id="tabunganList">
+        <p>Daftar tabungan Anda akan muncul di sini setelah ditambahkan.</p>
+      </div>
+      
+      <!-- Modal Konfirmasi Hapus -->
+<div id="modalKonfirmasi" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <p>Apakah Anda yakin ingin menghapus tabungan ini?</p>
+      <button onclick="hapusTabunganConfirm()">OK</button>
+      <button onclick="closeModal()">Batal</button>
+    </div>
+  </div>
+  
+
+  <script src="script.js"></script>
+</body>
+</html>
